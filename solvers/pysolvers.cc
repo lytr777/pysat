@@ -938,11 +938,12 @@ static PyObject *py_cadical_acc_stats(PyObject *self, PyObject *args)
 	CaDiCaL::Solver *s = (CaDiCaL::Solver *)PyCapsule_GetPointer(s_obj, NULL);
 #endif
 
-	return Py_BuildValue("{s:l,s:l,s:l,s:l}",
+	return Py_BuildValue("{s:l,s:l,s:l,s:l,s:l}",
 		"restarts", s->restarts(),
 		"conflicts", s->conflicts(),
 		"decisions", s->decisions(),
-		"propagations", s->propagations()
+		"propagations", s->propagations(),
+		"learned_literals", s->learned_literals()
 	);
 }
 #endif  // WITH_CADICAL
@@ -1493,11 +1494,12 @@ static PyObject *py_glucose3_acc_stats(PyObject *self, PyObject *args)
 	Glucose30::Solver *s = (Glucose30::Solver *)PyCapsule_GetPointer(s_obj, NULL);
 #endif
 
-	return Py_BuildValue("{s:l,s:l,s:l,s:l}",
+	return Py_BuildValue("{s:l,s:l,s:l,s:l,s:l}",
 		"restarts", s->starts,
 		"conflicts", s->conflicts,
 		"decisions", s->decisions,
-		"propagations", s->propagations
+		"propagations", s->propagations,
+		"learned_literals", s->tot_literals
 	);
 }
 #endif  // WITH_GLUCOSE30
@@ -2048,11 +2050,12 @@ static PyObject *py_glucose41_acc_stats(PyObject *self, PyObject *args)
 	Glucose41::Solver *s = (Glucose41::Solver *)PyCapsule_GetPointer(s_obj, NULL);
 #endif
 
-	return Py_BuildValue("{s:l,s:l,s:l,s:l}",
+	return Py_BuildValue("{s:l,s:l,s:l,s:l,s:l}",
 		"restarts", s->starts,
 		"conflicts", s->conflicts,
 		"decisions", s->decisions,
-		"propagations", s->propagations
+		"propagations", s->propagations,
+		"learned_literals", s->stats[22]
 	);
 }
 #endif  // WITH_GLUCOSE41
